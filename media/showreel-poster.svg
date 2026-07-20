@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1916 938" width="1916" height="938">
+  <defs>
+    <radialGradient id="v" cx="50%" cy="42%" r="75%">
+      <stop offset="0%" stop-color="#15120d"/>
+      <stop offset="100%" stop-color="#0b0a09"/>
+    </radialGradient>
+  </defs>
+  <rect width="1916" height="938" fill="url(#v)"/>
+  <text x="958" y="796" text-anchor="middle" font-family="Georgia,'Times New Roman',serif" font-size="40" letter-spacing="15" fill="#c8a25c" fill-opacity="0.42">THE ABBEY GROUP</text>
+  <text x="958" y="850" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-size="27" letter-spacing="1" fill="#a99f8a" fill-opacity="0.7">the group in motion</text>
+</svg>
