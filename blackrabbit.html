@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="referrer" content="no-referrer">
-<link rel="icon" type="image/svg+xml" href="/favicon.svg">
-<script>addEventListener("error",function(e){var t=e.target;if(t&&t.tagName==="IMG"){t.style.visibility="hidden"}},true);</script>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"><script>/*rvfix*/(function(){function r(e){e.classList.add("in")}function run(){var l=[].slice.call(document.querySelectorAll(".rv-img:not(.in)"));if(!window.IntersectionObserver){l.forEach(r);return}var o=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){r(e.target);o.unobserve(e.target)}})},{threshold:0,rootMargin:"300px 0px 300px 0px"});l.forEach(function(e){o.observe(e)});setTimeout(function(){document.querySelectorAll(".rv-img:not(.in)").forEach(r)},1600)}if(document.readyState==="loading")addEventListener("DOMContentLoaded",run);else run();addEventListener("load",run)})();</script>
+<script>(function(){var P={bar:["/images/cocktail-bar.png"],food:["/images/blackrabbit-kitchen.png"],room:["/images/blackrabbit-interior.png","/images/blackrabbit-kitchen.png","/images/cocktail-bar.png"]},I={bar:0,food:0,room:0};function pick(a){a=(a||"").toLowerCase();var k=/dish|food|kitchen|plate|menu/.test(a)?"food":/bar|drink|cocktail/.test(a)?"bar":"room";var p=P[k];return p[I[k]++%p.length]}addEventListener("error",function(e){var t=e.target;if(!t||t.tagName!=="IMG"||t.dataset.fb)return;t.dataset.fb="1";t.src=pick(t.alt)},true)})();</script>
 <title>Black Rabbit — Restaurant &amp; Bar, Chester-le-Street</title>
 <meta name="description" content="A timeless bar and dining destination in the heart of Chester-le-Street. Elegant. Relaxed. Timeless.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
