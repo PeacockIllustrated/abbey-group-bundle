@@ -1,0 +1,528 @@
+<!DOCTYPE html><html lang="en-GB"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Restaurant — Hibou Blanc, Newcastle</title><meta name="description" content="Fine dining in the heart of Newcastle — set in the 1902 Sunlight Chambers.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,300;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ivory:#f3eee2;
+  --ivory-2:#ebe4d3;
+  --ink:#1a1b20;
+  --noir:#101116;
+  --champ:#a97f39;
+  --champ-hi:#d8b46b;
+  --line:rgba(26,27,32,.16);
+  --line-soft:rgba(26,27,32,.09);
+  --mist:#6f6b5e;
+  --gline:rgba(216,180,107,.22);
+  --trajan:"Trajan Pro 3","Trajan Pro","Cinzel",serif;
+  --corm:"Cormorant Garamond",Georgia,serif;
+  --sans:"Jost","Helvetica Neue",sans-serif;
+  --ease:cubic-bezier(.19,1,.22,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--ivory);color:var(--ink);font-family:var(--sans);font-weight:400;
+  font-size:17px;line-height:1.8;letter-spacing:.02em;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+::selection{background:var(--champ);color:var(--ivory)}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--ivory)}
+::-webkit-scrollbar-thumb{background:#c9bda2}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+@media(pointer:fine){body,a,button{cursor:none}}
+body::after{content:"";position:fixed;inset:-50%;pointer-events:none;z-index:2000;opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='.9'/%3E%3C/svg%3E");
+  animation:grain 9s steps(10) infinite}
+@keyframes grain{0%,100%{transform:translate(0,0)}20%{transform:translate(-3%,4%)}40%{transform:translate(3%,-2%)}
+  60%{transform:translate(-4%,-3%)}80%{transform:translate(2%,3%)}}
+
+/* cursor */
+.cur-dot,.cur-ring{position:fixed;top:0;left:0;pointer-events:none;z-index:3000;border-radius:50%;
+  transform:translate(-50%,-50%);display:none;mix-blend-mode:difference}
+@media(pointer:fine){.cur-dot,.cur-ring{display:block}}
+.cur-dot{width:5px;height:5px;background:#e8dfc9}
+.cur-ring{width:36px;height:36px;border:1px solid rgba(232,223,201,.6);
+  transition:width .35s var(--ease),height .35s var(--ease)}
+body.cur-hover .cur-ring{width:62px;height:62px}
+
+/* ————— splash ————— */
+#loader{position:fixed;inset:0;z-index:2500;background:var(--ivory);display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:30px;transition:transform 1.1s var(--ease);will-change:transform}
+#loader.done{transform:translateY(-101%)}
+.ld-moon{position:absolute;width:min(340px,70vw);aspect-ratio:1;pointer-events:none}
+.ld-moon circle{fill:none;stroke:var(--champ);stroke-width:1;opacity:.5;
+  stroke-dasharray:1070;stroke-dashoffset:1070;animation:moon 2.4s .3s var(--ease) forwards}
+@keyframes moon{to{stroke-dashoffset:0}}
+.ld-mark{width:min(560px,84vw);position:relative;z-index:1}
+.ld-mark svg{width:100%;height:auto;display:block;overflow:visible;
+  animation:ldGleam 1.5s 2s var(--ease) both}
+@keyframes ldGleam{0%,100%{filter:brightness(1)}45%{filter:brightness(1.14)}}
+.hb-l{opacity:0;transform-box:fill-box;transform-origin:center;animation:lrise 1s var(--ease) forwards}
+@keyframes lrise{from{opacity:0;transform:translateY(26px);filter:blur(5px)}
+  to{opacity:1;transform:none;filter:none}}
+#loader .ld-sub{font-size:10px;letter-spacing:.52em;text-indent:.52em;text-transform:uppercase;
+  color:var(--champ);opacity:0;animation:subup 1s 1.6s var(--ease) forwards}
+@keyframes subup{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.hb-l,.ld-moon circle{animation-duration:.01s;animation-delay:0s}}
+
+/* ————— nav ————— */
+header{position:fixed;inset:0 0 auto;z-index:1500;padding:24px clamp(22px,4.5vw,60px);
+  display:flex;align-items:center;justify-content:space-between;
+  transition:padding .5s var(--ease),background .5s,border-color .5s;border-bottom:1px solid transparent}
+header.scrolled{padding-top:13px;padding-bottom:13px;background:rgba(243,238,226,.86);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-color:var(--line-soft)}
+header.on-noir.scrolled{background:rgba(16,17,22,.86);border-color:var(--gline)}
+.lockup svg{height:26px;width:auto;display:block}
+nav{display:flex;gap:clamp(16px,2.4vw,34px);align-items:center}
+nav .nl{font-size:11.5px;font-weight:400;letter-spacing:.26em;text-transform:uppercase;color:#4c4a42;
+  position:relative;padding:6px 0;transition:color .4s}
+header.on-noir nav .nl{color:#cfc8b8}
+header.on-noir .lockup svg{filter:brightness(0) invert(.92)}
+nav .nl::after{content:"";position:absolute;left:0;bottom:0;height:1px;width:100%;background:var(--champ);
+  transform:scaleX(0);transform-origin:right;transition:transform .5s var(--ease)}
+nav .nl:hover{color:var(--ink)}
+header.on-noir nav .nl:hover{color:var(--ivory)}
+nav .nl:hover::after{transform:scaleX(1);transform-origin:left}
+.btn{display:inline-flex;align-items:center;gap:12px;font-size:11.5px;font-weight:400;letter-spacing:.26em;
+  text-transform:uppercase;border:1px solid var(--ink);color:var(--ink);padding:13px 26px;
+  position:relative;overflow:hidden;transition:color .5s var(--ease),border-color .5s;background:transparent}
+.btn::before{content:"";position:absolute;inset:0;background:var(--ink);transform:scaleX(0);
+  transform-origin:right;transition:transform .55s var(--ease);z-index:-1}
+.btn:hover{color:var(--ivory)}
+.btn:hover::before{transform:scaleX(1);transform-origin:left}
+.btn.gold{border-color:var(--champ);color:var(--champ)}
+.btn.gold::before{background:var(--champ)}
+.btn.gold:hover{color:var(--ivory)}
+.noir .btn{border-color:var(--champ-hi);color:var(--champ-hi)}
+.noir .btn::before{background:var(--champ-hi)}
+.noir .btn:hover{color:var(--noir)}
+.btn-nav{padding:11px 22px}
+.burger{display:none;flex-direction:column;gap:6px;background:none;border:0;padding:8px;z-index:1600}
+.burger span{display:block;width:26px;height:1px;background:var(--ink);transition:transform .45s var(--ease),opacity .3s,background .4s}
+header.on-noir .burger span{background:var(--ivory)}
+body.menu-open .burger span{background:var(--ivory)}
+body.menu-open .burger span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+body.menu-open .burger span:nth-child(2){opacity:0}
+body.menu-open .burger span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+#mnav{position:fixed;inset:0;z-index:1450;background:rgba(16,17,22,.97);display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:8px;opacity:0;pointer-events:none;transition:opacity .5s}
+body.menu-open #mnav{opacity:1;pointer-events:auto}
+#mnav a{font-family:var(--trajan);font-size:clamp(23px,6.4vw,34px);letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ivory);padding:9px;opacity:0;transform:translateY(18px);
+  transition:opacity .6s var(--ease),transform .6s var(--ease)}
+body.menu-open #mnav a{opacity:1;transform:none}
+#mnav a:hover{color:var(--champ-hi)}
+@media(max-width:960px){nav .nl,#navRes{display:none}.burger{display:flex}}
+
+/* ————— shared ————— */
+.wrap{max-width:1360px;margin:0 auto;padding:0 clamp(22px,5vw,70px)}
+section{position:relative}
+.eyebrow{display:inline-flex;align-items:center;gap:16px;font-size:11px;font-weight:400;
+  letter-spacing:.44em;text-transform:uppercase;color:var(--champ)}
+.eyebrow::before{content:"";width:44px;height:1px;background:var(--champ);opacity:.4}
+.display{font-family:var(--trajan);font-weight:400;text-transform:uppercase;line-height:1.12;
+  letter-spacing:.05em;color:var(--ink)}
+.noir .display{color:var(--ivory)}
+.it{font-family:var(--corm);font-style:italic;font-weight:400;letter-spacing:.01em;text-transform:none}
+.ghost{position:absolute;font-family:var(--corm);font-style:italic;font-size:clamp(110px,16vw,210px);
+  color:transparent;-webkit-text-stroke:1px rgba(26,27,32,.08);line-height:1;pointer-events:none;user-select:none}
+.noir .ghost{-webkit-text-stroke:1px rgba(216,180,107,.1)}
+p.lead{font-family:var(--corm);font-size:clamp(20px,2.1vw,25px);font-style:italic;color:var(--ink);line-height:1.6}
+.noir p.lead{color:var(--ivory)}
+p.body{color:#55524a;max-width:54ch;font-size:17px}
+.noir p.body{color:#b6b09d}
+.rv{opacity:0;transform:translateY(32px);transition:opacity 1.1s var(--ease),transform 1.1s var(--ease)}
+.rv.in{opacity:1;transform:none}
+.rv-d1{transition-delay:.12s}.rv-d2{transition-delay:.24s}.rv-d3{transition-delay:.36s}.rv-d4{transition-delay:.48s}
+.rv-img{clip-path:inset(100% 0 0 0);transition:clip-path 1.3s var(--ease)}
+.rv-img.in{clip-path:inset(0 0 0 0)}
+.imgbox{overflow:hidden;background:var(--ivory-2)}
+.imgbox img{width:100%;height:100%;object-fit:cover;transition:transform 1.4s var(--ease),filter .9s var(--ease)}
+.imgbox:hover img{transform:scale(1.05)}
+.duo img{filter:grayscale(1) contrast(1.04) sepia(.14) brightness(1.03)}
+.duo:hover img{filter:none}
+.moon{position:absolute;border-radius:50%;border:1px solid var(--champ);opacity:.35;pointer-events:none}
+
+/* ————— cinematic hero ————— */
+.hero{position:relative;min-height:100svh;display:flex;align-items:center;overflow:hidden;background:var(--noir)}
+.hero-bg{position:absolute;inset:0;z-index:0}
+.hero-bg video{width:100%;height:100%;object-fit:cover;filter:contrast(1.04) saturate(.92) brightness(.82)}
+.hero-scrim{position:absolute;inset:0;z-index:1;background:
+  linear-gradient(180deg,rgba(16,17,22,.55) 0%,rgba(16,17,22,.28) 42%,rgba(16,17,22,.9) 100%),
+  radial-gradient(120% 80% at 50% 30%,transparent 40%,rgba(16,17,22,.5) 100%)}
+.hero-inner{position:relative;z-index:2;text-align:center;margin:0 auto;max-width:900px}
+.hero .eyebrow{justify-content:center;color:var(--champ-hi);opacity:0;transition:opacity 1s .1s}
+.hero .eyebrow::before,.hero .eyebrow::after{content:"";width:44px;height:1px;background:var(--champ-hi);opacity:.5}
+body.loaded .hero .eyebrow{opacity:1}
+.hero-mark{width:min(680px,86vw);margin:26px auto 14px;
+  opacity:0;transform:translateY(18px);transition:opacity 1.3s .3s var(--ease),transform 1.3s .3s var(--ease)}
+.hero-mark svg{width:100%;height:auto;display:block}
+.hero-mark.inv{filter:brightness(0) invert(.96) drop-shadow(0 4px 30px rgba(0,0,0,.5))}
+body.loaded .hero-mark{opacity:1;transform:none}
+.hero-sub{font-family:var(--corm);font-style:italic;font-size:clamp(21px,2.4vw,30px);color:#e7e0cf;
+  text-shadow:0 2px 20px rgba(0,0,0,.6);opacity:0;transform:translateY(12px);
+  transition:opacity 1s .55s var(--ease),transform 1s .55s var(--ease)}
+body.loaded .hero-sub{opacity:1;transform:none}
+.hero-ctas{display:flex;gap:16px;justify-content:center;margin-top:40px;flex-wrap:wrap;
+  opacity:0;transition:opacity 1s .85s}
+body.loaded .hero-ctas{opacity:1}
+.btn.ghost{border-color:rgba(243,238,226,.5);color:var(--ivory)}
+.btn.ghost::before{background:var(--ivory)}
+.btn.ghost:hover{color:var(--noir)}
+.hero-vtag{position:absolute;z-index:2;left:clamp(18px,3vw,40px);top:50%;transform:rotate(180deg);
+  writing-mode:vertical-rl;font-size:9.5px;letter-spacing:.4em;text-transform:uppercase;color:rgba(243,238,226,.6);
+  opacity:0;transition:opacity 1.2s 1s}
+body.loaded .hero-vtag{opacity:1}
+.hero-badge{position:absolute;z-index:2;right:clamp(18px,3vw,44px);bottom:clamp(60px,8vh,90px);
+  font-size:9.5px;letter-spacing:.3em;text-transform:uppercase;color:rgba(243,238,226,.6);
+  opacity:0;transition:opacity 1.2s 1.1s}
+body.loaded .hero-badge{opacity:1}
+.hero .scroll-cue{color:rgba(243,238,226,.6)}
+.hero .scroll-cue i{background:rgba(243,238,226,.25)}
+@media(max-width:640px){.hero-vtag{display:none}.hero-mark{width:90vw}.hero-ctas{flex-direction:column;align-items:center}}
+/* ————— marquee ————— */
+.marquee{padding:26px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  overflow:hidden;white-space:nowrap;background:var(--ivory)}
+.marquee .track{display:inline-flex;animation:mq 40s linear infinite}
+.marquee:hover .track{animation-play-state:paused}
+.marquee span{font-family:var(--trajan);font-size:clamp(22px,3vw,36px);letter-spacing:.22em;
+  text-transform:uppercase;color:transparent;-webkit-text-stroke:1px rgba(26,27,32,.4);padding-right:.6em}
+.marquee span b{font-weight:400;color:var(--champ);-webkit-text-stroke:0;font-family:var(--corm);
+  font-style:italic;text-transform:lowercase;letter-spacing:.02em}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* ————— maison ————— */
+.maison{padding:clamp(110px,14vw,190px) 0;background:var(--ivory)}
+.maison .ghost{top:50px;right:2vw}
+.m-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:clamp(44px,7vw,110px);align-items:center}
+.m-media{position:relative}
+.m-media .imgbox{aspect-ratio:4/5}
+.m-media .moon{width:clamp(120px,12vw,180px);aspect-ratio:1;right:-26px;top:-26px}
+.m-copy h2{font-size:clamp(30px,3.8vw,50px);margin:24px 0 28px}
+.m-copy .lead{margin-bottom:24px}
+.m-copy .body{margin-bottom:18px}
+.m-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);
+  border:1px solid var(--line);margin-top:40px}
+.m-stats div{background:var(--ivory);padding:20px 18px}
+.m-stats b{font-family:var(--trajan);font-weight:400;display:block;font-size:18px;color:var(--champ);
+  letter-spacing:.08em;margin-bottom:4px}
+.m-stats span{font-size:9.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--mist);line-height:1.8}
+@media(max-width:900px){.m-grid,.hero-grid{grid-template-columns:1fr}}
+
+/* ————— la table ————— */
+.table-s{padding:clamp(110px,14vw,190px) 0;background:var(--ivory-2);
+  border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft)}
+.table-s .ghost{top:40px;left:2vw}
+.t-head{max-width:720px;margin-bottom:clamp(40px,5vw,70px)}
+.t-head h2{font-size:clamp(30px,3.8vw,50px);margin:24px 0 22px}
+.tickets{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2vw,28px)}
+.ticket{background:var(--ivory);border:1px solid var(--line);padding:clamp(28px,3vw,40px);
+  position:relative;transition:transform .6s var(--ease),box-shadow .6s var(--ease)}
+.ticket:hover{transform:translateY(-6px);box-shadow:0 24px 50px rgba(26,27,32,.1)}
+.ticket::before,.ticket::after{content:"";position:absolute;top:50%;width:18px;height:18px;border-radius:50%;
+  background:var(--ivory-2);border:1px solid var(--line);transform:translateY(-50%)}
+.ticket::before{left:-10px;border-left-color:transparent}
+.ticket::after{right:-10px;border-right-color:transparent}
+.ticket .no{font-family:var(--corm);font-style:italic;color:var(--champ);font-size:15px}
+.ticket h3{font-family:var(--trajan);font-weight:400;font-size:clamp(18px,1.6vw,22px);letter-spacing:.12em;
+  text-transform:uppercase;margin:10px 0 6px}
+.ticket .price{font-family:var(--corm);font-size:clamp(30px,3vw,40px);color:var(--champ);line-height:1.2}
+.ticket .price small{font-size:.5em;letter-spacing:.06em}
+.ticket p{font-family:var(--corm);font-style:italic;font-size:17.5px;color:#55524a;line-height:1.5;margin-top:10px}
+.ticket .foot{margin-top:18px;padding-top:14px;border-top:1px dashed var(--line);
+  font-size:9.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--mist)}
+@media(max-width:900px){.tickets{grid-template-columns:1fr}}
+
+/* ————— le bar (noir) ————— */
+.noir{background:var(--noir);color:var(--ivory)}
+.bar-s{padding:clamp(120px,15vw,200px) 0 0;overflow:hidden}
+.bar-s .ghost{top:60px;right:2vw}
+.b-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(44px,7vw,110px);align-items:center}
+.b-copy h2{font-size:clamp(30px,3.8vw,50px);margin:24px 0 28px}
+.b-copy .body{margin-bottom:18px}
+.b-quote{border-left:1px solid var(--champ-hi);padding-left:24px;margin:32px 0}
+.b-quote p{font-family:var(--corm);font-style:italic;font-size:clamp(21px,2.2vw,27px);color:var(--champ-hi);line-height:1.5}
+.b-media{position:relative}
+.b-media .imgbox{aspect-ratio:3/4;background:#191a20}
+.b-media .moon{width:clamp(130px,13vw,190px);aspect-ratio:1;left:-28px;top:-28px;border-color:var(--champ-hi);opacity:.4}
+.b-strip{display:flex;gap:16px;width:max-content;animation:mq 44s linear infinite;
+  padding:clamp(70px,8vw,110px) 0 clamp(90px,11vw,150px)}
+.bar-s:hover .b-strip{animation-play-state:paused}
+.b-strip .imgbox{width:clamp(200px,22vw,320px);aspect-ratio:3/4;flex-shrink:0;background:#191a20}
+.b-strip .imgbox:nth-child(even){margin-top:34px}
+
+/* ————— menus ————— */
+.menus-s{padding:clamp(110px,14vw,190px) 0;background:var(--ivory)}
+.menus-s .head{text-align:center;margin-bottom:clamp(46px,6vw,80px)}
+.menus-s .head h2{font-size:clamp(30px,4.2vw,56px);margin:22px 0 14px}
+.menus-s .head .eyebrow{justify-content:center}
+.menus-s .head .eyebrow::after{content:"";width:44px;height:1px;background:var(--champ);opacity:.4}
+.mlist{max-width:860px;margin:0 auto}
+.mrow{display:flex;align-items:baseline;gap:18px;padding:clamp(20px,2.6vw,30px) 6px;
+  border-top:1px solid var(--line);transition:background .5s}
+.mrow:last-child{border-bottom:1px solid var(--line)}
+.mrow:hover{background:rgba(169,127,57,.05)}
+.mrow .nm{font-family:var(--trajan);font-size:clamp(17px,2vw,24px);letter-spacing:.14em;text-transform:uppercase}
+.mrow .ds{font-family:var(--corm);font-style:italic;font-size:17px;color:var(--mist)}
+.mrow .dots{flex:1;border-bottom:1px dotted rgba(169,127,57,.5);transform:translateY(-4px);min-width:30px}
+.mrow .go{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--champ);white-space:nowrap;
+  display:inline-flex;align-items:center;gap:10px;transition:gap .4s var(--ease)}
+.mrow .go svg{width:24px;height:8px;stroke:var(--champ);fill:none;stroke-width:1}
+.mrow:hover .go{gap:16px}
+
+/* ————— visit (noir) ————— */
+.visit{padding:clamp(110px,14vw,190px) 0;border-top:1px solid var(--gline)}
+.v-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(44px,7vw,110px)}
+.v-copy h2{font-size:clamp(30px,3.8vw,50px);margin:24px 0 26px}
+.v-copy .addr{font-family:var(--corm);font-style:italic;font-size:clamp(20px,2vw,25px);color:var(--champ-hi);margin-bottom:8px}
+.v-copy .body{margin-bottom:6px}
+.v-ctas{display:flex;gap:16px;margin-top:34px;flex-wrap:wrap}
+.hours{border:1px solid var(--gline)}
+.hours .hh{padding:22px 26px;border-bottom:1px solid var(--gline)}
+.hours .hh:last-child{border-bottom:0}
+.hours b{font-family:var(--trajan);font-weight:400;font-size:13px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--champ-hi);display:block;margin-bottom:10px}
+.hours div{display:flex;justify-content:space-between;gap:14px;font-size:13.5px;letter-spacing:.06em;
+  color:#b6b09d;padding:3px 0}
+.hours div span:last-child{color:var(--ivory)}
+@media(max-width:900px){.v-grid,.b-grid{grid-template-columns:1fr}}
+
+/* ————— footer ————— */
+footer.noir{border-top:1px solid var(--gline);padding:clamp(70px,8vw,110px) 0 36px}
+.f-top{display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center}
+.f-top svg{width:clamp(240px,30vw,340px);height:auto;filter:brightness(0) invert(.9)}
+.f-tag{font-family:var(--corm);font-style:italic;font-size:19px;color:#b6b09d}
+.f-social{display:flex;gap:14px;margin-top:24px}
+.f-social a{width:44px;height:44px;border:1px solid var(--gline);border-radius:50%;display:flex;
+  align-items:center;justify-content:center;transition:background .45s,border-color .45s}
+.f-social a svg{width:15px;height:15px;fill:var(--champ-hi);transition:fill .45s}
+.f-social a:hover{background:var(--champ-hi);border-color:var(--champ-hi)}
+.f-social a:hover svg{fill:var(--noir)}
+.f-links{display:flex;gap:clamp(18px,3.6vw,40px);margin-top:26px;flex-wrap:wrap;justify-content:center}
+.f-links a{font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;color:#8d8670;transition:color .4s}
+.f-links a:hover{color:var(--champ-hi)}
+.f-bottom{margin-top:clamp(46px,5vw,70px);padding-top:24px;border-top:1px solid var(--gline);
+  display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
+  font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:#77705c}
+@media(max-width:640px){
+  .hero{padding-top:130px}
+  .hero-media{order:-1}
+  .hero-media .imgbox{aspect-ratio:16/10;max-height:34svh}
+  .hero-media .moon{display:none}
+  .hero-copy{text-align:center}
+  .hero-copy .eyebrow{justify-content:center}
+  .hero-mark{margin-inline:auto}
+  .hero-ctas{justify-content:center;flex-direction:column;align-items:center}
+  .scroll-cue{display:none}
+  .m-media .moon,.b-media .moon{display:none}
+  .mrow .ds{display:none}
+  .f-bottom{justify-content:center;text-align:center}
+}
+@media(prefers-reduced-motion:reduce){.rv{transition-duration:.01s}}
+</style><style>
+.phero{position:relative;min-height:66svh;display:flex;align-items:flex-end;overflow:hidden;padding-bottom:clamp(48px,6vw,80px)}
+.phero .pbg{position:absolute;inset:0;z-index:0}
+.phero .pbg img{width:100%;height:100%;object-fit:cover;filter:grayscale(.12) sepia(.12) contrast(1.04) brightness(.9)}
+.phero .pscrim{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(16,17,22,.5),rgba(16,17,22,.32) 45%,rgba(16,17,22,.92))}
+.phero .wrap{position:relative;z-index:2;width:100%}
+.phero h1{font-size:clamp(38px,7vw,92px);margin-top:18px;color:var(--ivory)}
+.phero .lede{font-family:var(--corm);font-style:italic;font-size:clamp(19px,2vw,25px);color:#e7e0cf;margin-top:14px;max-width:34ch;text-shadow:0 2px 18px rgba(0,0,0,.6)}
+.phero .eyebrow{color:var(--champ-hi)}.phero .eyebrow::before{background:var(--champ-hi);opacity:.6}
+.sec{padding:clamp(90px,12vw,170px) 0}
+.duo-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,100px);align-items:center}
+.duo-grid.rev>.dc{order:2}
+.dc h2{font-size:clamp(28px,3.6vw,48px);margin:22px 0 26px}
+.dc .lead{margin-bottom:22px}.dc .body{margin-bottom:16px}
+.dm{position:relative}.dm .imgbox{aspect-ratio:4/5}
+.dm .moon{width:clamp(120px,12vw,180px);aspect-ratio:1;right:-24px;top:-24px}
+@media(max-width:900px){.duo-grid{grid-template-columns:1fr}.duo-grid.rev>.dc{order:0}.dm .moon{display:none}}
+.pstrip{display:flex;gap:16px;width:max-content;animation:mq 46s linear infinite;padding:clamp(20px,3vw,40px) 0}
+.pstrip .imgbox{width:clamp(200px,22vw,320px);aspect-ratio:3/4;flex-shrink:0}
+.pstrip .imgbox:nth-child(even){margin-top:32px}
+.stripwrap{overflow:hidden}.stripwrap:hover .pstrip{animation-play-state:paused}
+.band{padding:clamp(100px,13vw,180px) 0;text-align:center}
+.band h2{font-size:clamp(30px,5vw,64px);margin:22px 0 12px}
+.band .eyebrow{justify-content:center}.band .eyebrow::after{content:"";width:44px;height:1px;background:var(--champ);opacity:.4}
+.band.noir .eyebrow{color:var(--champ-hi)}.band.noir .eyebrow::before,.band.noir .eyebrow::after{background:var(--champ-hi)}
+.band .it2{font-family:var(--corm);font-style:italic;color:var(--mist);font-size:clamp(18px,2vw,23px)}
+.noir .band .it2,.band.noir .it2{color:#b6b09d}
+.band .ctas{display:flex;gap:16px;justify-content:center;margin-top:36px;flex-wrap:wrap}
+</style><style>
+.dm{position:relative}
+.dm::after{content:"";position:absolute;inset:0;border:1px solid var(--champ);opacity:.32;
+  transform:translate(16px,16px);transition:transform .7s var(--ease);pointer-events:none}
+.noir .dm::after{border-color:var(--champ-hi)}
+.dm:hover::after{transform:translate(9px,9px)}
+.menu-sec{padding:clamp(90px,12vw,170px) 0}
+.menu-head{text-align:center;max-width:720px;margin:0 auto clamp(46px,6vw,80px)}
+.menu-head h2{font-size:clamp(30px,4.2vw,54px);margin:20px 0 16px}
+.menu-head .eyebrow{justify-content:center}
+.menu-head .eyebrow::after{content:"";width:44px;height:1px;background:var(--champ);opacity:.4}
+.noir .menu-head .eyebrow::before,.noir .menu-head .eyebrow::after{background:var(--champ-hi)}
+.menu-price{font-family:var(--corm);font-style:italic;font-size:clamp(19px,2vw,25px);color:var(--champ)}
+.noir .menu-price{color:var(--champ-hi)}
+.menu-cols{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,90px);max-width:1000px;margin:0 auto}
+.menu-group{margin-bottom:clamp(30px,3.5vw,48px)}
+.menu-group h3{font-family:var(--trajan);font-weight:400;font-size:14px;letter-spacing:.28em;text-transform:uppercase;
+  color:var(--champ);padding-bottom:14px;margin-bottom:6px;border-bottom:1px solid var(--line)}
+.noir .menu-group h3{color:var(--champ-hi);border-color:var(--gline)}
+.mi{display:flex;align-items:baseline;gap:12px;padding:11px 0}
+.mi+.mi{border-top:1px solid var(--line-soft)}
+.noir .mi+.mi{border-top:1px solid rgba(216,180,107,.08)}
+.mn{font-family:var(--corm);font-size:19px;color:var(--ink)}
+.noir .mn{color:var(--ivory)}
+.mn small{display:block;font-style:italic;font-size:15px;color:var(--mist);margin-top:1px}
+.noir .mn small{color:#b6b09d}
+.dts{flex:1;border-bottom:1px dotted rgba(169,127,57,.45);transform:translateY(-4px);min-width:20px}
+.mp{font-family:var(--corm);font-size:18px;color:var(--champ);white-space:nowrap}
+.noir .mp{color:var(--champ-hi)}
+.menu-note{text-align:center;font-family:var(--corm);font-style:italic;font-size:18px;color:var(--mist);
+  margin-top:clamp(34px,4vw,56px)}
+@media(max-width:760px){.menu-cols{grid-template-columns:1fr;gap:0}}
+</style><style>.menu-head .orn{display:block;width:120px;height:10px;margin:16px auto 0;stroke:var(--champ);fill:var(--champ);opacity:.7}</style></head><body><div class="cur-ring"></div><div class="cur-dot"></div><svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden"><svg  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 368.7 49.66">
+  <defs>
+    <style>
+      .hbc-1 {
+        fill: url(#hblg-2);
+      }
+
+      .hbc-2 {
+        fill: url(#hblg-10);
+      }
+
+      .hbc-3 {
+        fill: url(#hblg-4);
+      }
+
+      .hbc-4 {
+        fill: url(#hblg-3);
+      }
+
+      .hbc-5 {
+        fill: url(#hblg-5);
+      }
+
+      .hbc-6 {
+        fill: url(#hblg-8);
+      }
+
+      .hbc-7 {
+        fill: url(#hblg-7);
+      }
+
+      .hbc-8 {
+        fill: url(#hblg-9);
+      }
+
+      .hbc-9 {
+        fill: url(#hblg-6);
+      }
+
+      .hbc-10 {
+        fill: url(#hblg);
+      }
+    </style>
+    <linearGradient id="hblg" x1="337.63" y1="42.75" x2="373.54" y2="6.83" gradientUnits="userSpaceOnUse">
+      <stop offset=".22" stop-color="#ebbe72"/>
+      <stop offset=".32" stop-color="#eccd9a"/>
+      <stop offset=".41" stop-color="#ebbe72"/>
+      <stop offset=".59" stop-color="#cea664"/>
+      <stop offset=".72" stop-color="#ebbe72"/>
+      <stop offset=".8" stop-color="#eccd9a"/>
+      <stop offset=".9" stop-color="#ebbe72"/>
+    </linearGradient>
+    <linearGradient id="hblg-2" x1="110.56" y1="36.79" x2="137.53" y2="9.82" xlink:href="#hblg"/>
+    <linearGradient id="hblg-3" x1="145.74" y1="34.23" x2="176.21" y2="3.75" xlink:href="#hblg"/>
+    <linearGradient id="hblg-4" x1="7.27" y1="47.7" x2="52.88" y2="2.09" xlink:href="#hblg"/>
+    <linearGradient id="hblg-5" x1="68.67" y1="38.38" x2="98.96" y2="8.09" xlink:href="#hblg"/>
+    <linearGradient id="hblg-6" x1="49.18" y1="35.28" x2="73.58" y2="10.89" xlink:href="#hblg"/>
+    <linearGradient id="hblg-7" x1="192.41" y1="38.42" x2="222.71" y2="8.12" xlink:href="#hblg"/>
+    <linearGradient id="hblg-8" x1="294.38" y1="40.23" x2="329.43" y2="5.18" xlink:href="#hblg"/>
+    <linearGradient id="hblg-9" x1="259.34" y1="44.42" x2="288.07" y2="15.7" xlink:href="#hblg"/>
+    <linearGradient id="hblg-10" x1="224.76" y1="38.71" x2="249.08" y2="14.39" xlink:href="#hblg"/>
+  </defs>
+  <g id="HBArt" >
+    <g>
+      <path class="hbc-10" d="M341,23.91c-.08,10.06,2.88,21.23,15.12,21.01,6.14-.11,9.91-3.57,12.26-9.8l.32,11.93c-.82-.03-2.19-.2-2.69.03-5.15,2.3-11.24,3.25-16.77,2.08-9.42-1.99-15.71-8.96-17.17-18.29-1.09-7.01-.49-13.89,3.15-20.07,5.92-10.06,17.58-12.95,27.88-9.28,1.53.54,2.83.45,5.05-.09l-.05,12.82c-3.66-3.1-2.48-8.29-10.77-9.27-5.96-.7-11.29,1.95-13.84,7.44-1.68,3.62-2.45,7.45-2.49,11.48Z"/>
+      <g>
+        <path class="hbc-1" d="M124.54,42.35c-9.98.19-17.47-6.22-18.4-15.85-.54-5.59.34-11.1,3.73-15.67,3.6-4.84,8.84-7.11,14.95-6.92,6.97.22,13.1,4.36,15.77,10.99,2.18,5.43,2.15,11.84-.15,17.13-2.87,6.61-8.69,10.18-15.91,10.31ZM133.31,14.49c-1.31-3.83-4.04-6.3-7.51-6.78-3.83-.54-7.93.53-9.79,4.12-3.34,6.42-3.54,14.3-.93,21,1.57,4.02,5.47,6.03,9.38,5.84,11.06-.51,11.65-15.99,8.85-24.18Z"/>
+        <path class="hbc-4" d="M167.73,4.61h9.33c-.96,1.61-2.08,3.22-2.09,4.98l-.06,17c0,1.95-.28,3.94-.55,5.89-1.31,9.53-10.66,10.72-18.41,9.22-5.39-1.04-8.67-5.24-8.71-10.66l-.15-20.96c-.02-2.1-.67-3.56-2-5.49l10.78.03c-1.18,1.8-2.06,3.41-2.06,5.41l.03,19.59c0,1.63.39,4.22,1.4,5.55,2.79,3.67,8.9,4.25,12.38,1.19,1.62-1.42,2.63-4.57,2.64-6.76l.11-20.08c.01-1.96-.96-3.04-2.64-4.92Z"/>
+        <g>
+          <path class="hbc-3" d="M40.17,42.79c1.27-12.65-7.63-23.39-20.07-24.25v25.05c0,2.18,1.2,3.2,3.15,5.02l-15.04.03c1.93-2.03,3.31-3.15,3.31-5.55l-.02-22.74c-2.55,1.03-4.32,2.41-5.79,3.97,3.73.4,5.19,3.67,4.74,6.29-.57,3.26-3.42,5.36-6.86,4.38-1.67-.47-3.25-2.45-3.48-3.84-.33-1.97.14-4.08,1.45-5.51,2.99-3.27,6.19-5.78,9.93-8.07l.04-10.5c.01-2.55-1.01-3.7-3.31-5.96l14.98-.07c-1.07,1.53-3.03,2.9-3.04,4.41l-.02,9.59c7.72-.51,14.57,1.79,20.01,7.04l.02-16.09c0-1.86-1.64-3.07-3.12-4.91h14.85c-2.22,2.24-3.23,3.44-3.23,6.01l.04,36.44c0,2.19,1.48,3,3.37,5l-15.24.06c2.54-2.1,3.06-3.02,3.34-5.8Z"/>
+          <path class="hbc-5" d="M102.27,33.81c-1.68,4.81-6.3,7.65-11.25,7.67l-19.19.05c1.48-1.69,2.54-2.75,2.54-4.46V9.09c0-1.72-1.05-2.8-2.55-4.43l15.9-.28c3.08-.05,6.49.65,9.07,2.02,3.32,1.77,4.51,5.27,3.87,8.7-.63,3.4-3.13,5.57-7.19,6.93l3.2,1.06c4.38,1.45,7.3,5.87,5.61,10.72ZM91.35,18.92c3.01-2.22,2.64-6.77.21-9.09-3.37-1.76-6.98-1.84-10.49-1.04l.04,11.41c3.35.61,7.2.96,10.24-1.28ZM95.06,32.69c.42-2.51-.14-5.32-2.26-6.62-3.56-2.19-7.63-2.28-11.79-1.62v13.12c4.84,1.27,13.1.78,14.05-4.88Z"/>
+          <path class="hbc-9" d="M67.41,41.49l-11.95.06c1.89-1.87,2.7-2.88,2.69-4.96l-.02-27.56c0-1.8-1.37-2.88-2.69-4.45l11.9.06c-1.7,1.8-2.64,3.16-2.62,5.43l.2,27.31c.01,1.51,1.05,2.43,2.49,4.1Z"/>
+        </g>
+      </g>
+      <g>
+        <path class="hbc-7" d="M226.43,32.34c-.86,5.25-5.52,8.82-10.73,9.11-6.62.37-13.04.18-20.14.12,1.49-1.66,2.56-2.67,2.56-4.5l.03-26.99c0-2.26-.61-3.5-2.66-5.42l16.93-.16c3.38-.03,7.07.85,9.55,2.93,2.66,2.24,3.14,5.56,2.16,8.84-.81,2.71-3.53,4.84-6.8,5.84,4.92,1.16,10.13,4.03,9.11,10.23ZM217.15,15.68c.37-2.36-.24-5.09-2.56-6.16-2.99-1.38-6.34-1.16-9.69-.81v11.78c4.48.39,11.42.54,12.25-4.81ZM218.9,32.27c.2-2.37-.34-5.01-2.4-6.22-3.55-2.09-7.63-2.29-11.64-1.52l-.02,13.05c4.89,1.29,13.54.74,14.05-5.32Z"/>
+        <path class="hbc-6" d="M327.15,41.48l-6.55.15c.48-1.37.84-2.71.07-3.71l-18.1-23.74.35,22.58c.03,1.99,1.13,3.18,2.77,4.76l-9.92.1c1.45-1.87,2.59-3.02,2.59-5.04l-.04-27.01c0-1.94-.79-3.08-2.39-4.92l8.61-.09c.44.83.96,2.08,1.4,2.65l16.73,21.87-.16-19.53c-.02-1.9-.95-3.16-2.53-4.9l8.84-.07c-.72,1.55-1.69,2.99-1.69,4.44v32.46Z"/>
+        <path class="hbc-8" d="M265,36.67c-.21.63-.67,2.14-.36,2.53l1.86,2.38-10.02-.02,1.99-2.47,6.68-17.29c-3.41.49-6.63,1.83-8.94,4.13,1.5.93,2.83,2.01,3.17,3.1.49,1.59-.11,3.49-1.29,4.65-1.45,1.43-3.77,1.25-5.17.2-6.78-5.08,8.01-14.64,13.38-14.84l3.62-9.95c.65-1.79,0-2.84-1.7-4.36l8.79-.1c.54,1.6.94,2.99,1.53,4.48l11.12,27.95c.62,1.55,1.95,2.45,3.38,4.45l-12.21.08c.75-1.03,1.94-2.27,1.71-3.03-2.08-6.99-4.93-13.66-12.64-16.31l-4.89,14.4ZM275.73,20.11l-2.68-6.62-2.03,5.47,4.71,1.15Z"/>
+        <path class="hbc-2" d="M252.97,35.04l.09,6.63-25.47-.12c1.39-1.72,2.45-2.65,2.45-4.12l.02-27.81c0-2-.73-3.07-2.51-4.95h11.79c-.94,1.29-2.36,2.51-2.36,3.34l-.02,29.57,12.05-.17c1.35-.02,2.2-.88,3.95-2.35Z"/>
+      </g>
+    </g>
+  </g>
+</svg></svg><header id="hdr">
+<a class="lockup" href="hibou.html#top" aria-label="Hibou Blanc"><svg viewBox="0 0 368.7 49.66"><use href="#HBArt"/></svg></a>
+<nav>
+<a class="nl" href="hibou.html#maison">La Maison</a>
+<a class="nl" href="restaurant.html">Restaurant</a>
+<a class="nl" href="cocktailbar.html">Cocktail Bar</a>
+<a class="nl" href="hibou.html#menus">Menus</a>
+<a class="nl" href="hibou.html#visit">Visit</a>
+<a class="btn gold btn-nav" id="navRes" href="tel:01912618000">Réserver</a>
+<button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav></header>
+<div id="mnav">
+<a href="hibou.html#maison">La Maison</a><a href="restaurant.html">Restaurant</a>
+<a href="cocktailbar.html">Cocktail Bar</a><a href="hibou.html#menus">Menus</a>
+<a href="hibou.html#visit">Visit</a><a href="tel:01912618000">Réserver — 0191 261 8000</a>
+</div><main id="top">
+<section class="phero noir"><div class="pbg"><img src="https://www.hiboublanc.co.uk/wp-content/uploads/2021/10/Hibou-Blanc-76-533x800.jpg" alt="The restaurant at Hibou Blanc"></div><div class="pscrim"></div>
+<div class="wrap"><span class="eyebrow">The Restaurant — Newcastle</span>
+<h1 class="display">Fine dining in the<br><span class="it" style="color:var(--champ-hi)">heart of the city</span></h1>
+<p class="lede">Newcastle's finest restaurant experience, within the 1902 splendour of Sunlight Chambers.</p></div></section>
+<section class="sec" style="background:var(--ivory)"><div class="wrap duo-grid">
+<div class="dm"><div class="imgbox duo rv-img"><img loading="lazy" src="https://www.hiboublanc.co.uk/wp-content/uploads/2021/10/Hibou-Blanc-35-533x800.jpg" alt="Sunlight Chambers interior"></div><span class="moon rv"></span></div>
+<div class="dc"><span class="eyebrow rv">The Building</span><h2 class="display rv rv-d1">Sunlight <span class="it" style="color:var(--champ)">Chambers</span></h2>
+<p class="lead rv rv-d2">A Grade II listed building on the corner of the Bigg Market and High Bridge Street, built in 1902 for the Lever Brothers by nationally renowned architect W.&thinsp;S. Owen.</p>
+<p class="body rv rv-d3">Named after the Lever Brothers' most famous product — Sunlight Soap — this quirky, curiously coloured building carries a remarkable mosaic frieze depicting work and honest toil.</p>
+<p class="body rv rv-d3">Inside is every bit as beautiful as out. We've woven the building's original features into the design of Hibou Blanc, creating a room that oozes old-school style and glamour.</p></div></div></section>
+<section class="sec" style="background:var(--ivory-2);border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft)"><div class="wrap duo-grid rev">
+<div class="dc"><span class="eyebrow rv">The Kitchen</span><h2 class="display rv rv-d1">Locally driven,<br><span class="it" style="color:var(--champ)">flavour-led</span></h2>
+<p class="lead rv rv-d2">Our menu is lovingly crafted by Head Chef Neil Jefferson, reflecting the very best of local, seasonal produce — changed often to keep it so.</p>
+<p class="body rv rv-d3">With a strong focus on the best British seafood in each season, we source the finest local produce to make classic dishes, served simply. The food at Hibou Blanc delivers an impressive range of flavour.</p>
+<div class="hero-ctas" style="margin-top:34px;display:flex;gap:16px;flex-wrap:wrap"><a class="btn" href="hibou.html#menus">View the Menus</a><a class="btn gold" href="tel:01912618000">Réserver</a></div></div>
+<div class="dm"><div class="imgbox duo rv-img"><img loading="lazy" src="https://www.hiboublanc.co.uk/wp-content/uploads/2021/10/Hibou-Blanc-42-533x800.jpg" alt="A dish at Hibou Blanc"></div><span class="moon rv"></span></div></div></section>
+<section class="sec stripwrap" style="background:var(--ivory);padding-top:0;padding-bottom:0"><div class="wrap" style="padding:clamp(60px,8vw,110px) 0 clamp(24px,3vw,40px)"><span class="eyebrow rv">Inside the Room</span></div>
+<div class="pstrip"><div class="imgbox duo"><img loading="lazy" src="https://www.hiboublanc.co.uk/wp-content/uploads/2021/10/Hibou-Blanc-6-533x800.jpg" alt="Hibou Blanc"></div><div class="imgbox duo"><img loading="lazy" src="https://www.hiboublanc.co.uk/wp-content/uploads/2021/10/Hibou-Blanc-11-533x800.jpg" alt="Hibou Blanc"></div><div class="imgbox duo"><img loading="lazy" src="https://www.hiboublanc.co.uk/wp-content/uploads/2021/10/Hibou-Blanc-40-533x800.jpg" alt="Hibou Blanc"></div><div class="imgbox duo"><img loading="lazy" src="https://www.hiboublanc.co.uk/wp-content/uploads/2021/10/IMG_7957-600x800.jpg" alt="Hibou Blanc"></div><div class="imgbox duo"><img loading="lazy" src="https://www.hiboublanc.co.uk/wp-content/uploads/2021/10/IMG_7922-600x800.jpg" alt="Hibou Blanc"></div><div class="imgbox duo"><img loading="lazy" src="https://www.hiboublanc.co.uk/wp-content/uploads/2021/10/IMG_3715-600x800.jpg" alt="Hibou Blanc"></div></div></section>
+<section class="menu-sec" style="background:var(--ivory);border-top:1px solid var(--line-soft)">
+<div class="wrap"><div class="menu-head"><span class="eyebrow rv">The Menu</span>
+<h2 class="display rv rv-d1">Table <span class="it" style="color:var(--champ)">d'Hôte</span></h2>
+<svg class="orn rv rv-d2" viewBox="0 0 150 12"><line x1="0" y1="6" x2="58" y2="6" stroke-width="1"/><path d="M75 1 80 6 75 11 70 6Z"/><line x1="92" y1="6" x2="150" y2="6" stroke-width="1"/></svg><p class="menu-price rv rv-d3" style="margin-top:18px">One course £20&nbsp;&nbsp;·&nbsp;&nbsp;Two £30&nbsp;&nbsp;·&nbsp;&nbsp;Three £35</p></div>
+<div class="menu-cols"><div class="menu-col"><div class="menu-group rv"><h3>To Begin</h3><div class="mi"><span class="mn">Gordal olives</span><span class="dts"></span><span class="mp">£4</span></div><div class="mi"><span class="mn">Freshly baked gougères</span><span class="dts"></span><span class="mp">£4</span></div><div class="mi"><span class="mn">Lindisfarne oysters<small>tabasco, mignonette, lemon</small></span><span class="dts"></span><span class="mp">£3.50</span></div></div><div class="menu-group rv"><h3>Starters</h3><div class="mi"><span class="mn">Salt-aged steak tartare</span></div><div class="mi"><span class="mn">Chicken schnitzel</span></div><div class="mi"><span class="mn">Hand-dived king scallops</span></div><div class="mi"><span class="mn">Fritto misto</span></div><div class="mi"><span class="mn">Dressed green salad</span></div><div class="mi"><span class="mn">Isle of Wight tomatoes & mozzarella</span></div></div></div><div class="menu-col"><div class="menu-group rv"><h3>Mains</h3><div class="mi"><span class="mn">Waterford farm steaks</span></div><div class="mi"><span class="mn">Beef burger</span></div><div class="mi"><span class="mn">Yorkshire lamb rump</span></div><div class="mi"><span class="mn">Roast chicken</span></div><div class="mi"><span class="mn">Dover sole meunière</span></div><div class="mi"><span class="mn">Fillet of cod</span></div><div class="mi"><span class="mn">Potato gnocchi gratin</span></div></div><div class="menu-group rv"><h3>Sides & Sauces</h3><div class="mi"><span class="mn">Fries</span><span class="dts"></span><span class="mp">£5</span></div><div class="mi"><span class="mn">Onion rings</span><span class="dts"></span><span class="mp">£5</span></div><div class="mi"><span class="mn">Seasonal vegetables</span><span class="dts"></span><span class="mp">£5</span></div><div class="mi"><span class="mn">Green peppercorn</span><span class="dts"></span><span class="mp">£4</span></div><div class="mi"><span class="mn">Blue stilton</span><span class="dts"></span><span class="mp">£4</span></div><div class="mi"><span class="mn">Red wine</span><span class="dts"></span><span class="mp">£4</span></div></div><div class="menu-group rv"><h3>To Finish</h3><div class="mi"><span class="mn">Crème brûlée</span></div><div class="mi"><span class="mn">Eton mess</span></div><div class="mi"><span class="mn">Cheese selection</span><span class="dts"></span><span class="mp">£10 supp.</span></div></div></div></div>
+<p class="menu-note rv">Served with a basket of freshly baked baguette &amp; butter for the table. A sample menu — dishes change with the season.</p></div></section>
+<section class="band noir"><div class="wrap"><span class="eyebrow rv">Private Dining</span>
+<h2 class="display rv rv-d1">The <span class="it" style="color:var(--champ-hi)">Blanc Room</span></h2>
+<p class="it2 rv rv-d2">Our private dining room seats sixteen, or forty for canapés — perfect for intimate occasions.</p>
+<div class="ctas rv rv-d3"><a class="btn" href="mailto:restaurant@hiboublanc.co.uk">Enquire</a><a class="btn" href="https://www.hiboublanc.co.uk/private-dining-2/" target="_blank" rel="noopener">Private Dining ↗</a></div></div></section>
+</main><footer class="noir"><div class="wrap"><div class="f-top">
+<svg viewBox="0 0 368.7 49.66" role="img" aria-label="Hibou Blanc"><use href="#HBArt"/></svg>
+<p class="f-tag">A dining experience like no other.</p>
+<div class="f-social">
+<a href="https://www.facebook.com/hiboublancNCL" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M13.5 22v-8h2.7l.4-3.2h-3.1V8.7c0-.9.3-1.6 1.6-1.6h1.7V4.2c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2.4H7.4V14h2.7v8h3.4z"/></svg></a>
+<a href="https://www.instagram.com/hiboublanc_ncl/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 4.3c2.5 0 2.8 0 3.8.1 2.6.1 3.8 1.3 3.9 3.9 0 1 .1 1.3.1 3.8s0 2.8-.1 3.8c-.1 2.6-1.3 3.8-3.9 3.9-1 0-1.3.1-3.8.1s-2.8 0-3.8-.1c-2.6-.1-3.8-1.3-3.9-3.9 0-1-.1-1.3-.1-3.8s0-2.8.1-3.8C4.4 5.7 5.6 4.5 8.2 4.4c1-.1 1.3-.1 3.8-.1z"/></svg></a></div>
+<div class="f-links"><a href="hibou.html">Home</a><a href="blackrabbit.html">Black Rabbit</a><a href="court.html">The Court</a><a href="hibou.html#visit">Visit</a></div></div>
+<div class="f-bottom"><span>© 2026 Hibou Blanc</span><span>Sunlight Chambers · Newcastle upon Tyne</span><span>Concept · OneDesign</span></div></div></footer><script>
+const $=s=>document.querySelector(s);
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.12,rootMargin:"0px 0px -6% 0px"});
+document.querySelectorAll(".rv,.rv-img").forEach(el=>io.observe(el));
+const noirs=[...document.querySelectorAll(".noir")];
+addEventListener("scroll",()=>{const hdr=$("#hdr");hdr.classList.toggle("scrolled",scrollY>60);
+hdr.classList.toggle("on-noir",noirs.some(n=>{const r=n.getBoundingClientRect();return r.top<80&&r.bottom>40}));},{passive:true});
+$("#burger").addEventListener("click",()=>document.body.classList.toggle("menu-open"));
+document.querySelectorAll("#mnav a").forEach(a=>a.addEventListener("click",()=>document.body.classList.remove("menu-open")));
+if(matchMedia("(pointer:fine)").matches){const dot=$(".cur-dot"),ring=$(".cur-ring");let mx=0,my=0,rx=0,ry=0;
+addEventListener("mousemove",e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+"px";dot.style.top=my+"px"});
+(function loop(){rx+=(mx-rx)*.14;ry+=(my-ry)*.14;ring.style.left=rx+"px";ring.style.top=ry+"px";requestAnimationFrame(loop)})();
+document.addEventListener("mouseover",e=>document.body.classList.toggle("cur-hover",!!e.target.closest("a,button")));}
+</script></body></html>
