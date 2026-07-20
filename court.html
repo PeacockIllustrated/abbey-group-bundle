@@ -6,8 +6,8 @@
 <meta name="referrer" content="no-referrer">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg"><script>/*rvfix*/(function(){function r(e){e.classList.add("in")}function run(){var l=[].slice.call(document.querySelectorAll(".rv-img:not(.in)"));if(!window.IntersectionObserver){l.forEach(r);return}var o=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){r(e.target);o.unobserve(e.target)}})},{threshold:0,rootMargin:"300px 0px 300px 0px"});l.forEach(function(e){o.observe(e)});setTimeout(function(){document.querySelectorAll(".rv-img:not(.in)").forEach(r)},1600)}if(document.readyState==="loading")addEventListener("DOMContentLoaded",run);else run();addEventListener("load",run)})();</script>
 <script>addEventListener("error",function(e){var t=e.target;if(t&&t.tagName==="IMG"){t.style.visibility="hidden"}},true);</script>
-<title>The Court — Durham · Coming Soon</title>
-<meta name="description" content="The Court, Durham — the next house from The Abbey Group. Currently on the drawing board.">
+<title>The Court - Durham · Coming Soon</title>
+<meta name="description" content="The Court, Durham - the next house from The Abbey Group. Currently on the drawing board.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;1,300;1,400;1,500&family=IBM+Plex+Mono:wght@300;400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
@@ -82,7 +82,7 @@ main{flex:1;display:flex;align-items:center;justify-content:center;position:rela
   opacity:0;transform:translateY(20px);transition:opacity 1.3s .35s var(--ease),transform 1.3s .35s var(--ease)}
 body.orbiting .cs-title{opacity:1;transform:none}
 
-/* ————— copy ————— */
+/* ----- copy ----- */
 .eyebrow{display:inline-flex;align-items:center;gap:16px;font-size:11px;font-weight:400;
   letter-spacing:.44em;text-transform:uppercase;color:#ddb877;
   opacity:0;animation:up 1s .3s var(--ease) forwards}
@@ -110,7 +110,7 @@ body.orbiting .cs-title{opacity:1;transform:none}
 .btn:hover::before{transform:scaleX(1);transform-origin:left}
 .btn.solid{background:var(--gold);color:var(--ink);border-color:var(--gold)}
 
-/* ————— 3D shield ————— */
+/* ----- 3D shield ----- */
 .sheet{position:relative;z-index:2;width:min(430px,64vw,52vh);margin:0 auto;
   opacity:0;animation:sheetIn 1.4s .2s var(--ease) forwards}
 @keyframes sheetIn{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
@@ -216,7 +216,7 @@ body.orbiting .cs-reg{opacity:1}
 
 <div class="page">
 <header>
-  <a class="lockup" href="#" aria-label="The Court — Durham"><svg style="height:42px;width:auto;display:block"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 180.6 76.83">
+  <a class="lockup" href="#" aria-label="The Court - Durham"><svg style="height:42px;width:auto;display:block"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 180.6 76.83">
   <defs>
     <style>
       .ctc-1 {
@@ -381,7 +381,7 @@ body.orbiting .cs-reg{opacity:1}
     </figure>
     <h1 class="cs-title">Coming Soon</h1>
     <p class="cs-tag">A new table in the old city.</p>
-    <p class="cs-what">Restaurant · Cocktail Bar · Private Dining — Durham City</p>
+    <p class="cs-what">Restaurant · Cocktail Bar · Private Dining - Durham City</p>
     <div class="countdown" id="cd" aria-label="Countdown to opening">
       <div class="cd-cell"><div class="cd-num" id="cdD">00</div><div class="cd-lab">Days</div></div>
       <span class="cd-sep">:</span>
@@ -391,7 +391,7 @@ body.orbiting .cs-reg{opacity:1}
       <span class="cd-sep">:</span>
       <div class="cd-cell"><div class="cd-num" id="cdS">00</div><div class="cd-lab">Sec</div></div>
     </div>
-    <a class="cs-reg" href="mailto:hello@thecourtdurham.co.uk?subject=The%20Court%20—%20Register%20Interest">Register your interest →</a>
+    <a class="cs-reg" href="mailto:hello@thecourtdurham.co.uk?subject=The%20Court%20-%20Register%20Interest">Register your interest →</a>
     <div class="cs-links" style="margin-top:clamp(26px,3.5vh,40px)">
       <a class="hlink" href="blackrabbit.html">Black Rabbit ↗</a>
       <a class="hlink" href="index.html#abbey">The Abbey Group</a>
@@ -418,7 +418,7 @@ if(matchMedia("(pointer:fine)").matches){
   document.addEventListener("mouseover",e=>document.body.classList.toggle("cur-hover",
     !!e.target.closest("a,button")));
 }
-/* ————— draw-on animation ————— */
+/* ----- draw-on animation ----- */
 const ORDER=["body","border","panel","rays","city","flourish","letters"];
 const DELAY={body:.15,border:.75,panel:1.15,rays:1.45,city:1.85,flourish:2.35,letters:2.6};
 const DUR  ={body:1.5,border:1.2,panel:.9,rays:1.1,city:1.2,flourish:1.1,letters:1.4};

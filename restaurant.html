@@ -3,7 +3,7 @@
 <meta name="referrer" content="no-referrer">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg"><script>/*rvfix*/(function(){function r(e){e.classList.add("in")}function run(){var l=[].slice.call(document.querySelectorAll(".rv-img:not(.in)"));if(!window.IntersectionObserver){l.forEach(r);return}var o=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){r(e.target);o.unobserve(e.target)}})},{threshold:0,rootMargin:"300px 0px 300px 0px"});l.forEach(function(e){o.observe(e)});setTimeout(function(){document.querySelectorAll(".rv-img:not(.in)").forEach(r)},1600)}if(document.readyState==="loading")addEventListener("DOMContentLoaded",run);else run();addEventListener("load",run)})();</script>
 <script>(function(){var P={cocktail:["/images/cocktail-1.png","/images/cocktail-2.png","/images/cocktail-3.png","/images/cocktail-4.png","/images/cocktail-5.png","/images/cocktail-6.png"],bar:["/images/cocktail-bar.png","/images/cocktail-2.png","/images/cocktail-4.png","/images/cocktail-6.png"],food:["/images/blackrabbit-kitchen.png"],room:["/images/blackrabbit-interior.png","/images/cocktail-bar.png"]},I={cocktail:0,bar:0,food:0,room:0};function pick(a){a=(a||"").toLowerCase();var k=/cocktail|martini|negroni|old fashioned|sour|julep|spritz|drink/.test(a)?"cocktail":/dish|food|table|plate|menu|kitchen/.test(a)?"food":/bar/.test(a)?"bar":"room";var p=P[k];return p[I[k]++%p.length]}addEventListener("error",function(e){var t=e.target;if(!t||t.tagName!=="IMG"||t.dataset.fb)return;t.dataset.fb="1";t.src=pick(t.alt)},true)})();</script>
-<title>The Restaurant — Hibou Blanc, Newcastle</title><meta name="description" content="Fine dining in the heart of Newcastle — set in the 1902 Sunlight Chambers.">
+<title>The Restaurant - Hibou Blanc, Newcastle</title><meta name="description" content="Fine dining in the heart of Newcastle - set in the 1902 Sunlight Chambers.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,300;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -48,7 +48,7 @@ body::after{content:"";position:fixed;inset:-50%;pointer-events:none;z-index:200
   transition:width .35s var(--ease),height .35s var(--ease)}
 body.cur-hover .cur-ring{width:62px;height:62px}
 
-/* ————— splash ————— */
+/* ----- splash ----- */
 #loader{position:fixed;inset:0;z-index:2500;background:var(--ivory);display:flex;flex-direction:column;
   align-items:center;justify-content:center;gap:30px;transition:transform 1.1s var(--ease);will-change:transform}
 #loader.done{transform:translateY(-101%)}
@@ -68,7 +68,7 @@ body.cur-hover .cur-ring{width:62px;height:62px}
 @keyframes subup{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 @media(prefers-reduced-motion:reduce){.hb-l,.ld-moon circle{animation-duration:.01s;animation-delay:0s}}
 
-/* ————— nav ————— */
+/* ----- nav ----- */
 header{position:fixed;inset:0 0 auto;z-index:1500;padding:24px clamp(22px,4.5vw,60px);
   display:flex;align-items:center;justify-content:space-between;
   transition:padding .5s var(--ease),background .5s,border-color .5s;border-bottom:1px solid transparent}
@@ -117,7 +117,7 @@ body.menu-open #mnav a{opacity:1;transform:none}
 #mnav a:hover{color:var(--champ-hi)}
 @media(max-width:960px){nav .nl,#navRes{display:none}.burger{display:flex}}
 
-/* ————— shared ————— */
+/* ----- shared ----- */
 .wrap{max-width:1360px;margin:0 auto;padding:0 clamp(22px,5vw,70px)}
 section{position:relative}
 .eyebrow{display:inline-flex;align-items:center;gap:16px;font-size:11px;font-weight:400;
@@ -146,7 +146,7 @@ p.body{color:#55524a;max-width:54ch;font-size:17px}
 .duo:hover img{filter:none}
 .moon{position:absolute;border-radius:50%;border:1px solid var(--champ);opacity:.35;pointer-events:none}
 
-/* ————— cinematic hero ————— */
+/* ----- cinematic hero ----- */
 .hero{position:relative;min-height:100svh;display:flex;align-items:center;overflow:hidden;background:var(--noir)}
 .hero-bg{position:absolute;inset:0;z-index:0}
 .hero-bg video{width:100%;height:100%;object-fit:cover;filter:contrast(1.04) saturate(.92) brightness(.82)}
@@ -183,7 +183,7 @@ body.loaded .hero-badge{opacity:1}
 .hero .scroll-cue{color:rgba(243,238,226,.6)}
 .hero .scroll-cue i{background:rgba(243,238,226,.25)}
 @media(max-width:640px){.hero-vtag{display:none}.hero-mark{width:90vw}.hero-ctas{flex-direction:column;align-items:center}}
-/* ————— marquee ————— */
+/* ----- marquee ----- */
 .marquee{padding:26px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
   overflow:hidden;white-space:nowrap;background:var(--ivory)}
 .marquee .track{display:inline-flex;animation:mq 40s linear infinite}
@@ -194,7 +194,7 @@ body.loaded .hero-badge{opacity:1}
   font-style:italic;text-transform:lowercase;letter-spacing:.02em}
 @keyframes mq{to{transform:translateX(-50%)}}
 
-/* ————— maison ————— */
+/* ----- maison ----- */
 .maison{padding:clamp(110px,14vw,190px) 0;background:var(--ivory)}
 .maison .ghost{top:50px;right:2vw}
 .m-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:clamp(44px,7vw,110px);align-items:center}
@@ -212,7 +212,7 @@ body.loaded .hero-badge{opacity:1}
 .m-stats span{font-size:9.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--mist);line-height:1.8}
 @media(max-width:900px){.m-grid,.hero-grid{grid-template-columns:1fr}}
 
-/* ————— la table ————— */
+/* ----- la table ----- */
 .table-s{padding:clamp(110px,14vw,190px) 0;background:var(--ivory-2);
   border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft)}
 .table-s .ghost{top:40px;left:2vw}
@@ -236,7 +236,7 @@ body.loaded .hero-badge{opacity:1}
   font-size:9.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--mist)}
 @media(max-width:900px){.tickets{grid-template-columns:1fr}}
 
-/* ————— le bar (noir) ————— */
+/* ----- le bar (noir) ----- */
 .noir{background:var(--noir);color:var(--ivory)}
 .bar-s{padding:clamp(120px,15vw,200px) 0 0;overflow:hidden}
 .bar-s .ghost{top:60px;right:2vw}
@@ -254,7 +254,7 @@ body.loaded .hero-badge{opacity:1}
 .b-strip .imgbox{width:clamp(200px,22vw,320px);aspect-ratio:3/4;flex-shrink:0;background:#191a20}
 .b-strip .imgbox:nth-child(even){margin-top:34px}
 
-/* ————— menus ————— */
+/* ----- menus ----- */
 .menus-s{padding:clamp(110px,14vw,190px) 0;background:var(--ivory)}
 .menus-s .head{text-align:center;margin-bottom:clamp(46px,6vw,80px)}
 .menus-s .head h2{font-size:clamp(30px,4.2vw,56px);margin:22px 0 14px}
@@ -273,7 +273,7 @@ body.loaded .hero-badge{opacity:1}
 .mrow .go svg{width:24px;height:8px;stroke:var(--champ);fill:none;stroke-width:1}
 .mrow:hover .go{gap:16px}
 
-/* ————— visit (noir) ————— */
+/* ----- visit (noir) ----- */
 .visit{padding:clamp(110px,14vw,190px) 0;border-top:1px solid var(--gline)}
 .v-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(44px,7vw,110px)}
 .v-copy h2{font-size:clamp(30px,3.8vw,50px);margin:24px 0 26px}
@@ -290,7 +290,7 @@ body.loaded .hero-badge{opacity:1}
 .hours div span:last-child{color:var(--ivory)}
 @media(max-width:900px){.v-grid,.b-grid{grid-template-columns:1fr}}
 
-/* ————— footer ————— */
+/* ----- footer ----- */
 footer.noir{border-top:1px solid var(--gline);padding:clamp(70px,8vw,110px) 0 36px}
 .f-top{display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center}
 .f-top svg{width:clamp(240px,30vw,340px);height:auto;filter:brightness(0) invert(.9)}
@@ -478,21 +478,21 @@ footer.noir{border-top:1px solid var(--gline);padding:clamp(70px,8vw,110px) 0 36
 <div id="mnav">
 <a href="hibou.html#maison">La Maison</a><a href="restaurant.html">Restaurant</a>
 <a href="cocktailbar.html">Cocktail Bar</a><a href="hibou.html#menus">Menus</a>
-<a href="hibou.html#visit">Visit</a><a href="tel:01912618000">Réserver — 0191 261 8000</a>
+<a href="hibou.html#visit">Visit</a><a href="tel:01912618000">Réserver - 0191 261 8000</a>
 </div><main id="top">
 <section class="phero noir"><div class="pbg"><img src="https://www.hiboublanc.co.uk/wp-content/uploads/2021/10/Hibou-Blanc-76-533x800.jpg" alt="The restaurant at Hibou Blanc"></div><div class="pscrim"></div>
-<div class="wrap"><span class="eyebrow">The Restaurant — Newcastle</span>
+<div class="wrap"><span class="eyebrow">The Restaurant - Newcastle</span>
 <h1 class="display">Fine dining in the<br><span class="it" style="color:var(--champ-hi)">heart of the city</span></h1>
 <p class="lede">Newcastle's finest restaurant experience, within the 1902 splendour of Sunlight Chambers.</p></div></section>
 <section class="sec" style="background:var(--ivory)"><div class="wrap duo-grid">
 <div class="dm"><div class="imgbox duo rv-img"><img loading="lazy" src="https://www.hiboublanc.co.uk/wp-content/uploads/2021/10/Hibou-Blanc-35-533x800.jpg" alt="Sunlight Chambers interior"></div><span class="moon rv"></span></div>
 <div class="dc"><span class="eyebrow rv">The Building</span><h2 class="display rv rv-d1">Sunlight <span class="it" style="color:var(--champ)">Chambers</span></h2>
 <p class="lead rv rv-d2">A Grade II listed building on the corner of the Bigg Market and High Bridge Street, built in 1902 for the Lever Brothers by nationally renowned architect W.&thinsp;S. Owen.</p>
-<p class="body rv rv-d3">Named after the Lever Brothers' most famous product — Sunlight Soap — this quirky, curiously coloured building carries a remarkable mosaic frieze depicting work and honest toil.</p>
+<p class="body rv rv-d3">Named after the Lever Brothers' most famous product - Sunlight Soap - this quirky, curiously coloured building carries a remarkable mosaic frieze depicting work and honest toil.</p>
 <p class="body rv rv-d3">Inside is every bit as beautiful as out. We've woven the building's original features into the design of Hibou Blanc, creating a room that oozes old-school style and glamour.</p></div></div></section>
 <section class="sec" style="background:var(--ivory-2);border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft)"><div class="wrap duo-grid rev">
 <div class="dc"><span class="eyebrow rv">The Kitchen</span><h2 class="display rv rv-d1">Locally driven,<br><span class="it" style="color:var(--champ)">flavour-led</span></h2>
-<p class="lead rv rv-d2">Our menu is lovingly crafted by Head Chef Neil Jefferson, reflecting the very best of local, seasonal produce — changed often to keep it so.</p>
+<p class="lead rv rv-d2">Our menu is lovingly crafted by Head Chef Neil Jefferson, reflecting the very best of local, seasonal produce - changed often to keep it so.</p>
 <p class="body rv rv-d3">With a strong focus on the best British seafood in each season, we source the finest local produce to make classic dishes, served simply. The food at Hibou Blanc delivers an impressive range of flavour.</p>
 <div class="hero-ctas" style="margin-top:34px;display:flex;gap:16px;flex-wrap:wrap"><a class="btn" href="hibou.html#menus">View the Menus</a><a class="btn gold" href="tel:01912618000">Réserver</a></div></div>
 <div class="dm"><div class="imgbox duo rv-img"><img loading="lazy" src="https://www.hiboublanc.co.uk/wp-content/uploads/2021/10/Hibou-Blanc-42-533x800.jpg" alt="A dish at Hibou Blanc"></div><span class="moon rv"></span></div></div></section>
@@ -503,10 +503,10 @@ footer.noir{border-top:1px solid var(--gline);padding:clamp(70px,8vw,110px) 0 36
 <h2 class="display rv rv-d1">Table <span class="it" style="color:var(--champ)">d'Hôte</span></h2>
 <svg class="orn rv rv-d2" viewBox="0 0 150 12"><line x1="0" y1="6" x2="58" y2="6" stroke-width="1"/><path d="M75 1 80 6 75 11 70 6Z"/><line x1="92" y1="6" x2="150" y2="6" stroke-width="1"/></svg><p class="menu-price rv rv-d3" style="margin-top:18px">One course £20&nbsp;&nbsp;·&nbsp;&nbsp;Two £30&nbsp;&nbsp;·&nbsp;&nbsp;Three £35</p></div>
 <div class="menu-cols menu-courses"><div class="menu-group rv"><h3>Starters</h3><div class="mi"><span class="mn">Salt-aged steak tartare</span></div><div class="mi"><span class="mn">Chicken schnitzel</span></div><div class="mi"><span class="mn">Hand-dived king scallops</span></div><div class="mi"><span class="mn">Fritto misto</span></div><div class="mi"><span class="mn">Dressed green salad</span></div><div class="mi"><span class="mn">Isle of Wight tomatoes & mozzarella</span></div></div><div class="menu-group rv"><h3>Mains</h3><div class="mi"><span class="mn">Waterford farm steaks</span></div><div class="mi"><span class="mn">Beef burger</span></div><div class="mi"><span class="mn">Yorkshire lamb rump</span></div><div class="mi"><span class="mn">Roast chicken</span></div><div class="mi"><span class="mn">Dover sole meunière</span></div><div class="mi"><span class="mn">Fillet of cod</span></div><div class="mi"><span class="mn">Potato gnocchi gratin</span></div></div></div><div class="menu-finish rv"><h3>To Finish</h3><p class="finish-items">Crème brûlée<span class="sep">·</span>Eton mess<span class="sep">·</span>Cheese selection<span class="supp">£10 supp.</span></p></div><div class="menu-extras rv"><div class="menu-extras-head"><span>To Add</span></div><div class="menu-cols"><div class="menu-group"><h3>To Begin</h3><div class="mi"><span class="mn">Gordal olives</span><span class="dts"></span><span class="mp">£4</span></div><div class="mi"><span class="mn">Freshly baked gougères</span><span class="dts"></span><span class="mp">£4</span></div><div class="mi"><span class="mn">Lindisfarne oysters<small>tabasco, mignonette, lemon</small></span><span class="dts"></span><span class="mp">£3.50</span></div></div><div class="menu-group"><h3>Sides & Sauces</h3><div class="mi"><span class="mn">Fries</span><span class="dts"></span><span class="mp">£5</span></div><div class="mi"><span class="mn">Onion rings</span><span class="dts"></span><span class="mp">£5</span></div><div class="mi"><span class="mn">Seasonal vegetables</span><span class="dts"></span><span class="mp">£5</span></div><div class="mi"><span class="mn">Green peppercorn</span><span class="dts"></span><span class="mp">£4</span></div><div class="mi"><span class="mn">Blue stilton</span><span class="dts"></span><span class="mp">£4</span></div><div class="mi"><span class="mn">Red wine</span><span class="dts"></span><span class="mp">£4</span></div></div></div></div>
-<p class="menu-note rv">Starters, mains &amp; dessert are included in your chosen course price; ‘To Add’ items are charged as shown. Served with a basket of freshly baked baguette &amp; butter for the table. A sample menu — dishes change with the season.</p></div></section>
+<p class="menu-note rv">Starters, mains &amp; dessert are included in your chosen course price; ‘To Add’ items are charged as shown. Served with a basket of freshly baked baguette &amp; butter for the table. A sample menu - dishes change with the season.</p></div></section>
 <section class="band noir"><div class="wrap"><span class="eyebrow rv">Private Dining</span>
 <h2 class="display rv rv-d1">The <span class="it" style="color:var(--champ-hi)">Blanc Room</span></h2>
-<p class="it2 rv rv-d2">Our private dining room seats sixteen, or forty for canapés — perfect for intimate occasions.</p>
+<p class="it2 rv rv-d2">Our private dining room seats sixteen, or forty for canapés - perfect for intimate occasions.</p>
 <div class="ctas rv rv-d3"><a class="btn" href="mailto:restaurant@hiboublanc.co.uk">Enquire</a><a class="btn" href="https://www.hiboublanc.co.uk/private-dining-2/" target="_blank" rel="noopener">Private Dining ↗</a></div></div></section>
 </main><footer class="noir"><div class="wrap"><div class="f-top">
 <svg viewBox="0 0 368.7 49.66" role="img" aria-label="Hibou Blanc"><use href="#HBArt"/></svg>
